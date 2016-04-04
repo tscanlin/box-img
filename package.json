@@ -1,0 +1,24 @@
+{
+  "name": "box-img",
+  "version": "0.0.1",
+  "description": "lightbox-like script for image galleries",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com"
+  },
+  "keywords": [
+    "lightbox",
+    "script",
+    "image",
+    "gallery",
+    "preview",
+    "full",
+    "screen"
+  ],
+  "author": "Tim Scanlin",
+  "license": "MIT"
+}
