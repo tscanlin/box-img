@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+.image-container {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  position: relative;
+  height: 200px;
+}
+
+.image {
+  max-height: 100%;
+}
+
+.image-title {
+  background-color: rgba(10, 10, 10, 0.6);
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 2px 4px;
+  /*text-shadow: 0 0 8px black;*/
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Box Img</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="js-gallery">
+      <!-- <img src="https://c4.staticflickr.com/4/3658/3596031283_d41cbca1e2_b.jpg"> -->
+    </div>
+
+    <div class="js-preview-container preview-backdrop hidden">
+      <img class="js-preview-image preview-image">
+    </div>
+
+    <div class="hidden">
+      <script id="image-template" type="text/template">
+        <img class="image" data-prop="src: thumbnailImg" data-prop="data-box-img: largeImg">
+        <div class="image-title" data-prop="textContent: title"></div>
+      </script>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
