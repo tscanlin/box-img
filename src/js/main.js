@@ -29,6 +29,17 @@
       previewImage.src = photo.largeImg;
       previewTitle.textContent = photo.title;
 
+      // Hide or show the arrows.
+      var index = indexOf.call(photos, findPhoto(photos, previewImage.src));
+      if (index === 0) {
+        previewControls.item(0).classList.add(hiddenClass);
+      } else if (index === photos.length - 1) {
+        previewControls.item(1).classList.add(hiddenClass);
+      } else {
+        previewControls.item(0).classList.remove(hiddenClass);
+        previewControls.item(1).classList.remove(hiddenClass);
+      }
+
       previewImage.onload = function() {
         previewContainer.classList.remove(hiddenClass);
       }
