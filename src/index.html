@@ -8,18 +8,27 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <div class="js-gallery">
+    <div class="js-gallery gallery">
       <!-- <img src="https://c4.staticflickr.com/4/3658/3596031283_d41cbca1e2_b.jpg"> -->
     </div>
 
-    <div class="js-preview-container preview-backdrop hidden">
-      <img class="js-preview-image preview-image">
+    <div class="js-preview-container preview-container bg--dark hidden">
+      <div class="preview-image-container">
+        <img class="js-preview-image max--100 block margin--auto">
+        <div class="js-preview-controls preview-controls image-meta bg--dark center font-size--2">
+          <span class="js-preview-controls--prev left cursor--pointer">&laquo;</span>
+          <span class="js-preview-title">test</span>
+          <span class="js-preview-controls--next right cursor--pointer">&raquo;</span>
+        </div>
+      </div>
     </div>
 
     <div class="hidden">
       <script id="image-template" type="text/template">
-        <img class="image" data-prop="src: thumbnailImg" data-prop="data-box-img: largeImg">
-        <div class="image-title" data-prop="textContent: title"></div>
+        <a href="#" class="image-container" data-prop="data-box-image: largeImg">
+          <img class="height--inherit margin--auto" data-prop="src: thumbnailImg">
+          <div class="image-meta bg--dark" data-prop="textContent: title"></div>
+        </a>
       </script>
     </div>
 
