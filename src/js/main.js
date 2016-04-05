@@ -4,15 +4,17 @@
   var indexOf = [].indexOf;
 
   function initializePreview(document, photos) {
-    var previewContainer = document.querySelector('.js-preview-container');
-    var previewImage = document.querySelector('.js-preview-image');
-    var previewTitle = document.querySelector('.js-preview-title');
-    var previewPrev = document.querySelector('.js-preview-controls--prev');
-    var previewNext = document.querySelector('.js-preview-controls--next');
-    var selectors = document.querySelectorAll('[data-box-image]');
+    var previewContainer = document.querySelector('[data-preview-container]');
+    var previewHides = document.querySelectorAll('[data-preview-hide]');
+    var previewImage = document.querySelector('[data-preview-image]');
+    var previewTitle = document.querySelector('[data-preview-title]');
+    var previewControls = document.querySelectorAll('[data-preview-control]');
+    var activators = document.querySelectorAll('[data-preview-show]');
     var hiddenClass = 'hidden';
 
-    var photo = {};
+    function contains(arr, item) {
+      return indexOf.call(arr, item) !== -1;
+    }
 
     function findPhoto(photos, url) {
       return photos.filter(function(photo) {
@@ -20,48 +22,66 @@
       })[0] || {};
     }
 
-    function showPhoto(event, el) {
-      var url = el.getAttribute('data-box-image');
-      var p = findPhoto(photos, url);
-      previewImage.src = url;
-      previewTitle.textContent = p.title;
+    function showPhoto(photo, event) {
+      if (!photo) {
+        return;
+      }
+      previewImage.src = photo.largeImg;
+      previewTitle.textContent = photo.title;
+
       previewImage.onload = function() {
         previewContainer.classList.remove(hiddenClass);
       }
-      event.preventDefault();
+
+      if (event) {
+        event.preventDefault();
+      }
     }
 
-    document.body.addEventListener('click', function(e) {
-      var el = e.target;
-      console.log(e)
+    function clickListener(event) {
+      var el = event.target;
 
-      if (el === previewContainer) {
-        previewContainer.classList.add(hiddenClass)
-      }
-
-      if (el.nodeName === 'IMG') {
+      // Clicking thumbnail images should actually trigger the parent link.
+      if (el.getAttribute('data-click-parent')) {
         el = el.parentNode;
       }
 
-      if (indexOf.call(selectors, el) !== -1) {
-        showPhoto(event, el);
+      if (contains(previewHides, el)) {
+        previewContainer.classList.add(hiddenClass)
+      }
+
+      if (contains(activators, el)) {
+        var url = el.getAttribute('data-preview-show');
+        var photo = findPhoto(photos, url);
+        showPhoto(photo, event);
       }
 
       // Listen for clicks on previous button.
-      if (el === previewPrev) {
+      if (contains(previewControls, el)) {
+        var val = el.getAttribute('data-preview-control');
 
+        var index = indexOf.call(photos, findPhoto(photos, previewImage.src));
+        var photo = photos[index + 1]; // Default to next.
+        if (val === 'prev') {
+          photo = photos[index - 1];
+        }
+
+        showPhoto(photo);
       }
+    }
 
-    });
+    document.body.addEventListener('click', clickListener);
 
-    // Listen for close events.
+    return function() {
+      document.body.removeEventListener('click', clickListener);
+    }
   }
 
   // Tranform Data.
   function buildURL(photoObj, size) {
     var ext = '_n.jpg';
     if (size === 'large') {
-      ext = '_h.jpg';
+      ext = '_b.jpg';
     }
     return 'https://c' + photoObj.farm + '.staticflickr.com/' + photoObj.farm
       + '/' + photoObj.server + '/' + photoObj.id + '_' + photoObj.secret + ext; // "+ _h"
