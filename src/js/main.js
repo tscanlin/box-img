@@ -78,7 +78,7 @@
 
       // Left / Right arrows.
       var index = indexOf.call(photos, findPhoto(photos, previewImage.src));
-      var photo = false; // Default to none.
+      var photo = false; // Default to false.
       if (event.keyCode === 37) { // Left.
         photo = photos[index - 1];
       } else if (event.keyCode === 39) { // Right.
@@ -105,7 +105,6 @@
     return 'https://c' + photoObj.farm + '.staticflickr.com/' + photoObj.farm
       + '/' + photoObj.server + '/' + photoObj.id + '_' + photoObj.secret + ext; // "+ _h"
   }
-  // https://c4.staticflickr.com/4/3658/3596031283_d41cbca1e2_b.jpg
 
   // Build HTML.
   function buildPhoto(photo, templateHtml) {
@@ -133,8 +132,7 @@
         }
       }
     }
-    // var img = container.querySelector('[data-prop="src"]')
-    // img.src = buildURL(photo);
+
     return container;
   }
 
@@ -178,7 +176,6 @@
       console.error(e);
     }
 
-    console.log(response.photos)
     if (response.photos && response.photos.photo.length) {
       buildHTML(response.photos.photo);
     } else {

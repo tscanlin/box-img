@@ -92,7 +92,6 @@ body {
 }
 
 .image-container {
-  /*display: inline-block;*/
   margin-right: 5px;
   margin-bottom: 5px;
   position: relative;
@@ -105,7 +104,6 @@ body {
   position: relative;
   top: -1.5em;
   padding: 2px 4px;
-  /*text-shadow: 0 0 8px black;*/
   width: 100%;
 }
 
