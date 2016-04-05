@@ -11,18 +11,18 @@
     <input type="checkbox" id="is-grid-view" class="right">
     <label for="is-grid-view" class="right">Grid View</label>
     <br>
-    <div class="js-gallery gallery">
+    <div class="js-gallery gallery clearfix">
       <!-- <img src="https://c4.staticflickr.com/4/3658/3596031283_d41cbca1e2_b.jpg"> -->
     </div>
 
-    <div class="preview-container bg--darker hidden" data-preview-container data-preview-hide>
-      <div class="preview-image-container" data-preview-hide>
-        <div class="btn--close cursor--pointer" data-preview-hide>×</div>
+    <div class="preview-container bg--darker hidden transition" data-preview-container data-preview-hide>
+      <div class="btn--close cursor--pointer" data-preview-hide>×</div>
+      <div class="preview-image-container center transition" data-preview-hide>
         <img class="max--100 block margin--auto" data-preview-image>
-        <div class="preview-controls image-meta bg--dark center font-size--2">
-          <span class="left cursor--pointer" data-preview-control="prev">&laquo;</span>
-          <span data-preview-title>test</span>
-          <span class="right cursor--pointer" data-preview-control="next">&raquo;</span>
+        <div class="preview-controls inline-block image-meta bg--dark center font-size--2">
+          <span class="left preview-arrow cursor--pointer" data-preview-control="prev">&laquo;</span>
+          <span class="preview-title" data-preview-title>test</span>
+          <span class="right preview-arrow cursor--pointer" data-preview-control="next">&raquo;</span>
         </div>
       </div>
     </div>

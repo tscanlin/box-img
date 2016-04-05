@@ -66,23 +66,6 @@
           photo = photos[index - 1];
         }
         showPhoto(photo);
-
-        // Show or hide the prev / next buttons.
-        if (index === 0) {
-          previewControls.item(0)
-            .classList.add(hiddenClass);
-        } else if (index === photos.length - 1) {
-          previewControls.item(1)
-            .classList.add(hiddenClass);
-        } else if (previewControls.item(0)
-            .classList.contains(hiddenClass)) {
-          previewControls.item(0)
-            .classList.remove(hiddenClass);
-        } else if (previewControls.item(1)
-            .classList.contains(hiddenClass)) {
-          previewControls.item(1)
-            .classList.remove(hiddenClass);
-        }
       }
     }
 
