@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <input type="checkbox" id="is-grid-view" class="right">
+    <label for="is-grid-view" class="right">Grid View</label>
+    <br>
     <div class="js-gallery gallery">
       <!-- <img src="https://c4.staticflickr.com/4/3658/3596031283_d41cbca1e2_b.jpg"> -->
     </div>
 
-    <div class="preview-container bg--dark hidden" data-preview-container data-preview-hide>
+    <div class="preview-container bg--darker hidden" data-preview-container data-preview-hide>
       <div class="preview-image-container" data-preview-hide>
+        <div class="btn--close cursor--pointer" data-preview-hide>×</div>
         <img class="max--100 block margin--auto" data-preview-image>
         <div class="preview-controls image-meta bg--dark center font-size--2">
           <span class="left cursor--pointer" data-preview-control="prev">&laquo;</span>
@@ -25,9 +29,9 @@
 
     <div class="hidden">
       <script id="image-template" type="text/template">
-        <a href="#" class="image-container" data-prop="data-preview-show: largeImg">
-          <img class="height--inherit margin--auto" data-prop="src: thumbnailImg" data-click-parent="true">
-          <div class="image-meta bg--dark" data-prop="textContent: title"></div>
+        <a href="#" class="image-container left" data-prop="data-preview-show: largeImg">
+          <img class="max-height--100 block margin--auto" data-prop="src: thumbnailImg" data-click-parent="true">
+          <div class="inline-block image-meta bg--dark" data-prop="textContent: title"></div>
         </a>
       </script>
     </div>

@@ -65,15 +65,51 @@
         if (val === 'prev') {
           photo = photos[index - 1];
         }
-
         showPhoto(photo);
+
+        // Show or hide the prev / next buttons.
+        if (index === 0) {
+          previewControls.item(0)
+            .classList.add(hiddenClass);
+        } else if (index === photos.length - 1) {
+          previewControls.item(1)
+            .classList.add(hiddenClass);
+        } else if (previewControls.item(0)
+            .classList.contains(hiddenClass)) {
+          previewControls.item(0)
+            .classList.remove(hiddenClass);
+        } else if (previewControls.item(1)
+            .classList.contains(hiddenClass)) {
+          previewControls.item(1)
+            .classList.remove(hiddenClass);
+        }
       }
     }
 
+    function keyupListener(event) {
+      // Escape.
+      if (event.keyCode === 27) {
+        previewContainer.classList.add(hiddenClass);
+        return;
+      }
+
+      // Left / Right arrows.
+      var index = indexOf.call(photos, findPhoto(photos, previewImage.src));
+      var photo = false; // Default to none.
+      if (event.keyCode === 37) { // Left.
+        photo = photos[index - 1];
+      } else if (event.keyCode === 39) { // Right.
+        photo = photos[index + 1];
+      }
+      showPhoto(photo);
+    }
+
     document.body.addEventListener('click', clickListener);
+    document.body.addEventListener('keyup', keyupListener);
 
     return function() {
       document.body.removeEventListener('click', clickListener);
+      document.body.removeEventListener('keyup', keyupListener);
     }
   }
 
@@ -91,7 +127,7 @@
   // Build HTML.
   function buildPhoto(photo, templateHtml) {
     var container = document.createElement('DIV');
-    container.className = 'inline-block hidden';
+    container.className = 'left hidden';
     container.innerHTML = templateHtml;
     for (var prop in photo) {
       var el = container.querySelector('[data-prop*="' + prop + '"]')
