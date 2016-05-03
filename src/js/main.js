@@ -33,10 +33,13 @@
       var index = indexOf.call(photos, findPhoto(photos, previewImage.src));
       if (index === 0) {
         previewControls.item(0).classList.add(hiddenClass);
-      } else if (index === photos.length - 1) {
-        previewControls.item(1).classList.add(hiddenClass);
       } else {
         previewControls.item(0).classList.remove(hiddenClass);
+      }
+
+      if (index === photos.length - 1) {
+        previewControls.item(1).classList.add(hiddenClass);
+      } else {
         previewControls.item(1).classList.remove(hiddenClass);
       }
 
